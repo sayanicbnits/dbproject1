@@ -1,0 +1,162 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Todo {
+  id: ID!
+  text: String!
+  done: Boolean!
+  user: User!
+}
+
+type User {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  todos: [Todo!]!
+}
+
+input NewTodo {
+  text: String!
+  userId: String!
+}
+
+type Mutation {
+  createTodo(input: NewTodo!): Todo!
+}
+
+
+
+
+input inputstr{
+  x: Int!
+  y: String!
+  p: String!
+}
+type outputstr{
+  z: String!
+}
+
+
+input inputstr1{
+  roll: Int!
+  course: String!
+  sem1: Int!
+  sem2: Int!
+  sem3: Int!
+
+}
+type outputstr1{
+  total: Int!
+}
+
+
+input inputstr2{
+  roll: Int!
+  name: String!
+}
+type outputstr2{
+  result: String!
+}
+extend type Mutation{
+  DeleteVal(input: inputstr2!): outputstr2!
+}
+
+input inputvalues{
+  x: Int!
+  y: Int!
+}
+type outputvalues{
+  z: String!
+}
+input enterDetails{
+  Name: String!
+  Course: [String!]!
+}
+type showdetails{
+  details: [ObtainedMarks!]!
+}
+type ObtainedMarks{
+  
+  Roll: Int!
+  Name: String!
+  Course: String!
+  Sem1: Int!
+  Sem2: Int!
+  Sem3: Int!
+  Total: Int!
+
+}
+extend type Query{
+  DisplayVal(input: inputvalues!): outputvalues!
+   DisplayVal1(input: inputvalues1!): outputvalues1!
+  Display(input: enterDetails!):showdetails!
+}
+
+input inputvalues1{
+  x: Int!
+  y: Int!
+}
+type outputvalues1{
+  z: [String]!
+}
+
+input inputcourses{
+  x: Int!
+  y: String!
+}
+type outpurcourses{
+  z: [String]!
+}
+
+
+input marks{
+  x: Int!
+  y: Int!
+  z: Int!
+  ro: Int!
+  c: String!
+}
+type total{
+  t: Int!
+}
+input testmarks{
+  roll: Int!
+}
+type testtotal{
+  marks: [student!]!
+}
+type student{
+  roll: Int!
+  name: String!
+  course: String!
+  total: Int!
+}
+input inputdynamic{
+  arr: [Int]
+}
+
+type outputdynamic{
+  a: Int
+  b: Int
+  c: Int
+  d: Int
+  e: Int
+  f: Int
+}
+
+extend type Mutation{
+  UpdateMarks(input: marks!): total!
+  PutCourse(input: inputcourses!): outpurcourses!
+  UpdateCourse(input: inputcourses!): outpurcourses!
+  DeleteCourse(input: inputcourses!): outpurcourses!
+  DisplayMarksPerSub(input: testmarks!): testtotal!
+  InsertVal(input: inputstr!): outputstr!
+  UpdateVal(input: inputstr1!): outputstr1!
+  UpdateNameroll(input: inputstr2!): outputstr2!
+  DynamicAdd(input: inputdynamic): outputdynamic
+}
+
+
